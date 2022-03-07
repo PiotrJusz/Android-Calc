@@ -37,8 +37,18 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(view.getId()==R.id.button_C){
             Log.i("Wciśnięto przycisk:","przucisk C.");
-            floatScreenResult = Float.valueOf(0);
+            floatScreenResult = (float) 0;
         }
+        else if(view.getId()==R.id.button_0){
+            Log.i("Wciśnięto przycisk:","przucisk 0.");
+
+            floatScreenResult = (float) 0;
+        }
+        else if(view.getId()==R.id.button_1){
+            Log.i("Wciśnięto przycisk:","przucisk 1.");
+            floatScreenResult = (float) 1;
+        }
+
 
         screenResult = String.valueOf(floatScreenResult);
         editTextNumberDecimal.setText(screenResult);
