@@ -32,7 +32,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="15dp"
         android:text="+ / -"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -42,7 +42,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="15dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_plus_minus" />
@@ -53,7 +53,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="15dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_0" />
@@ -64,7 +64,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="15dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="="
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_decimal_point" />
@@ -75,7 +75,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="1"
         app:layout_constraintBottom_toTopOf="@+id/button_plus_minus"
         app:layout_constraintStart_toStartOf="parent" />
@@ -86,7 +86,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="2"
         app:layout_constraintBottom_toTopOf="@+id/button_0"
         app:layout_constraintStart_toEndOf="@+id/button_1" />
@@ -97,7 +97,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="3"
         app:layout_constraintBottom_toTopOf="@+id/button_decimal_point"
         app:layout_constraintStart_toEndOf="@+id/button_2" />
@@ -108,7 +108,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="+"
         app:layout_constraintBottom_toTopOf="@+id/button_result"
         app:layout_constraintStart_toEndOf="@+id/button_3" />
@@ -119,7 +119,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="4"
         app:layout_constraintBottom_toTopOf="@+id/button_1"
         app:layout_constraintStart_toStartOf="parent" />
@@ -130,7 +130,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="5"
         app:layout_constraintBottom_toTopOf="@+id/button_2"
         app:layout_constraintStart_toEndOf="@+id/button_4" />
@@ -141,18 +141,18 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="6"
         app:layout_constraintBottom_toTopOf="@+id/button_3"
         app:layout_constraintStart_toEndOf="@+id/button_5" />
 
     <Button
-        android:id="@+id/toSubstract"
+        android:id="@+id/button_toSubstract"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="-"
         app:layout_constraintBottom_toTopOf="@+id/button_toAdd"
         app:layout_constraintStart_toEndOf="@+id/button_6" />
@@ -163,7 +163,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="7"
         app:layout_constraintBottom_toTopOf="@+id/button_4"
         app:layout_constraintStart_toStartOf="parent" />
@@ -174,7 +174,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="8"
         app:layout_constraintBottom_toTopOf="@+id/button_5"
         app:layout_constraintStart_toEndOf="@+id/button_7" />
@@ -185,7 +185,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="9"
         app:layout_constraintBottom_toTopOf="@+id/button_6"
         app:layout_constraintStart_toEndOf="@+id/button_8" />
@@ -196,9 +196,9 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="*"
-        app:layout_constraintBottom_toTopOf="@+id/toSubstract"
+        app:layout_constraintBottom_toTopOf="@+id/button_toSubstract"
         app:layout_constraintStart_toEndOf="@+id/button_9" />
 
     <Button
@@ -207,7 +207,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="C"
         app:layout_constraintBottom_toTopOf="@+id/button_7"
         app:layout_constraintStart_toStartOf="parent" />
@@ -218,7 +218,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="del"
         app:layout_constraintBottom_toTopOf="@+id/button_8"
         app:layout_constraintStart_toEndOf="@+id/button_C" />
@@ -229,7 +229,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="%"
         app:layout_constraintBottom_toTopOf="@+id/button_9"
         app:layout_constraintStart_toEndOf="@+id/button_del" />
@@ -240,7 +240,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="addNumber"
+        android:onClick="clickButton"
         android:text="/"
         app:layout_constraintBottom_toTopOf="@+id/button_multiply"
         app:layout_constraintStart_toEndOf="@+id/button_procent" />
