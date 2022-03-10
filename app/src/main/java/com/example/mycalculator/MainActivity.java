@@ -19,12 +19,40 @@ public class MainActivity extends AppCompatActivity {
 
     }
     //Button button_plus_minus = (Button)findViewById(R.id.button_plus_minus);
+    private String Multiply(String result, int k){
+        double dResult=Double.valueOf(result);
+        return String.valueOf(dResult * k);
+    }
 
     public String addNumber(int k, String result){
         String newScreenResult;
-        Double fResult = Double.parseDouble(result);
-        newScreenResult = String.valueOf(fResult * 10 + k);
+        if (result.equals("0")){
+            newScreenResult=String.valueOf(k);
+        }
+        else{
+            newScreenResult = result+String.valueOf(k);
+        }
+        //Double fResult = Double.parseDouble(result);
+        //newScreenResult = String.valueOf(fResult * 10 + k);
         return newScreenResult;
+    }
+    public String addNumber(String symbol, String result){
+        String newScreenResult;
+        if (result.contains(".")){
+            newScreenResult = result;
+        }
+        else{
+            newScreenResult = result+String.valueOf(symbol);
+        }
+        return newScreenResult;
+    }
+    public String addNumber(String result){
+        if(result.length()==1){
+            return "0";
+        }
+        else{
+            return result.substring(0,result.length()-1);
+        }
     }
 
     public void clickButton(View view){
@@ -74,6 +102,22 @@ public class MainActivity extends AppCompatActivity {
         else if(view.getId()==R.id.button_9){
             status=false;
             screenResult = addNumber(9,screenResult);
+        }
+        else if(view.getId()==R.id.button_C){
+            status=false;
+            screenResult = addNumber(0,"");
+        }
+        else if(view.getId()==R.id.button_decimal_point){
+            status=false;
+            screenResult = addNumber(".",screenResult);
+        }
+        else if(view.getId()==R.id.button_del){
+            status=false;
+            screenResult=addNumber(screenResult);
+        }
+        else if(view.getId()==R.id.button_plus_minus){
+            status=false;
+            screenResult=Multiply(screenResult,-1);
         }
 
 
