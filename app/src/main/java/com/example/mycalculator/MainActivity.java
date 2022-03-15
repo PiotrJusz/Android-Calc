@@ -11,6 +11,9 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     String screenBufor = "";
+    String currentResult;
+    String currentOperation="";
+    boolean status = false; //true dla operacji, false dla liczby
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         return String.valueOf(dResult * k);
     }
 
-    public String addNumber(int k, String result){
+    public String addNumber(int k, String result){  //dopisanie cyfry na ostatnia pozycje
         String newScreenResult;
         if (result.equals("0")){
             newScreenResult=String.valueOf(k);
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         //newScreenResult = String.valueOf(fResult * 10 + k);
         return newScreenResult;
     }
-    public String addNumber(String symbol, String result){
+    public String addNumber(String symbol, String result){  //wciśniecie przycisku "'" - point decimal
         String newScreenResult;
         if (result.contains(".")){
             newScreenResult = result;
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return newScreenResult;
     }
-    public String addNumber(String result){
+    public String addNumber(String result){ //wciśnięcie przycisku DEL
         if(result.length()==1){
             return "0";
         }
@@ -54,58 +57,153 @@ public class MainActivity extends AppCompatActivity {
             return result.substring(0,result.length()-1);
         }
     }
+    private String getResult(String first,String op, String second){
+        String tempInfo =  first + " " + op + " " + second;
+        Log.i("getResult(): ",tempInfo);
+        //op - currentOperation
+        String result="";
+        switch(op){
+            case "None":
+                //nic sie na razie nie dzieje
+                result = String.valueOf( 0 + Double.parseDouble(second));
+            case "+":
+                if (!(first ==(""))){
+                    result =  String.valueOf( (Double.parseDouble(first) + Double.parseDouble(second)) );
+                }
+                break;
+            case "-":
+                if (!(first ==(""))){
+                    result =  String.valueOf( (Double.parseDouble(first) - Double.parseDouble(second)) );
+                }
+                break;
+            case "*":
+                if (!(first ==(""))){
+                    result =  String.valueOf( (Double.parseDouble(first) * Double.parseDouble(second)) );
+                }
+                break;
+            case "/":
+                if (!(first ==(""))){
+                    result =  String.valueOf( (Double.parseDouble(first) / Double.parseDouble(second)) );
+                }
+                break;
+
+        }
+        return result;
+    }
 
     public void clickButton(View view){
         //Log.i("Zdarzenie:","Wciśnięto przycisk!");
         //Log.i("Button", String.valueOf(view.getId()));
 
         EditText editTextNumberDecimal = (EditText) findViewById(R.id.editTextNumberDecimal);
-        boolean status; //true dla operacji, false dla liczby
-        status=true;
+
         String screenResult = String.valueOf(editTextNumberDecimal.getText());
         if(view.getId()==R.id.button_0){
-            status=false;
-            screenResult = addNumber(0,screenResult);
+            if (!status) {
+                status = false;
+                screenResult = addNumber(0, screenResult);
+            }
+            else if(status){
+                status=false;
+                screenResult = addNumber(0,"");
+            }
         }
         if(view.getId()==R.id.button_1){
-            status=false;
-            screenResult = addNumber(1,screenResult);
+            if (!status) {
+                status = false;
+                screenResult = addNumber(1, screenResult);
+            }
+            else if(status){
+                status=false;
+                screenResult = addNumber(1,"");
+            }
         }
         else if(view.getId()==R.id.button_2){
-            status=false;
-            screenResult = addNumber(2,screenResult);
+            if (!status) {
+                status = false;
+                screenResult = addNumber(2, screenResult);
+            }
+            else if(status){
+                status=false;
+                screenResult = addNumber(2,"");
+            }
         }
         else if(view.getId()==R.id.button_3){
-            status=false;
-            screenResult = addNumber(3,screenResult);
+            if (!status) {
+                status = false;
+                screenResult = addNumber(3, screenResult);
+            }
+            else if(status){
+                status=false;
+                screenResult = addNumber(3,"");
+            }
         }
         else if(view.getId()==R.id.button_4){
-            status=false;
-            screenResult = addNumber(4,screenResult);
+            if (!status) {
+                status = false;
+                screenResult = addNumber(4, screenResult);
+            }
+            else if(status){
+                status=false;
+                screenResult = addNumber(4,"");
+            }
         }
         else if(view.getId()==R.id.button_5){
-            status=false;
-            screenResult = addNumber(5,screenResult);
+            if (!status) {
+                status = false;
+                screenResult = addNumber(5, screenResult);
+            }
+            else if(status){
+                status=false;
+                screenResult = addNumber(5,"");
+            }
         }
         else if(view.getId()==R.id.button_6){
-            status=false;
-            screenResult = addNumber(6,screenResult);
+            if (!status) {
+                status = false;
+                screenResult = addNumber(6, screenResult);
+            }
+            else if(status){
+                status=false;
+                screenResult = addNumber(6,"");
+            }
         }
         else if(view.getId()==R.id.button_7){
-            status=false;
-            screenResult = addNumber(7,screenResult);
+            if (!status) {
+                status = false;
+                screenResult = addNumber(7, screenResult);
+            }
+            else if(status){
+                status=false;
+                screenResult = addNumber(7,"");
+            }
         }
         else if(view.getId()==R.id.button_8){
-            status=false;
-            screenResult = addNumber(8,screenResult);
+            if (!status) {
+                status = false;
+                screenResult = addNumber(8, screenResult);
+            }
+            else if(status){
+                status=false;
+                screenResult = addNumber(8,"");
+            }
         }
         else if(view.getId()==R.id.button_9){
-            status=false;
-            screenResult = addNumber(9,screenResult);
+            if (!status) {
+                status = false;
+                screenResult = addNumber(9, screenResult);
+            }
+            else if(status){
+                status=false;
+                screenResult = addNumber(9,"");
+            }
         }
         else if(view.getId()==R.id.button_C){
             status=false;
             screenResult = addNumber(0,"");
+            //zerowanie currentOperation i screenBufor - przygotowanie do następneh operacji
+            currentOperation="None";
+            screenBufor="";
         }
         else if(view.getId()==R.id.button_decimal_point){
             status=false;
@@ -119,92 +217,53 @@ public class MainActivity extends AppCompatActivity {
             status=false;
             screenResult=Multiply(screenResult,-1);
         }
+        else if(view.getId()==R.id.button_result){
+            //status=true;
+            //tu powinna byc funkcja getResult
+            screenResult = getResult(screenBufor,currentOperation,screenResult);
+            //zerowanie currentOperation i przypisanie wyniku do zmiennej screenBufor - przygotowanie do następnej operacji
+            screenBufor=screenResult;
+            currentOperation="";
+        }
+        else if(view.getId()==R.id.button_toAdd){
+            status = true;
+            Log.i("currentOperation:",currentOperation);
+            if(currentOperation.equals("+")){
+                screenResult = getResult(screenBufor,"+",screenResult);
+            }
+            currentOperation = "+";
+
+            screenBufor=screenResult;
+            Log.i("screenBuffor_1: ",screenBufor );
+        }
+        else if(view.getId()==R.id.button_toSubstract){
+            status = true;
+            Log.i("currentOperation:",currentOperation);
+            if(currentOperation.equals("+")){
+                screenResult = getResult(screenBufor,"+",screenResult);
+            }
+            else if (currentOperation.equals("-")) {
+                screenResult = getResult(screenBufor,"-",screenResult);
+            }
+            currentOperation = "-";
+
+            screenBufor=screenResult;
+            Log.i("screenBuffor_1: ",screenBufor );
+        }
 
 
-        if(!status){
+        if(!status) {    //wciśnięcie przycisku z cyfrą
+            editTextNumberDecimal.setText(screenResult);
+            if (status) {    //wcisnięcie klawisza operacji + - * /
+                screenBufor = screenResult;   //zerowanie lwartości - przygotowanie do następnej operacji
+            }
+        }
+        else{
             editTextNumberDecimal.setText(screenResult);
         }
 
 
-        /*String screenResult;
-        Float floatScreenResult;
-        boolean status; //true jeśli ostatnim przycisliem wciśniętym jest operacja (+,-,*./ itd)
-        String tempScreenResult;    //tymczasowy screen result służący do dodawanie nowych liczb
 
-        screenResult = String.valueOf(editTextNumberDecimal.getText());
-        floatScreenResult = Float.valueOf(screenResult);
-
-        if (view.getId()==R.id.button_plus_minus){
-            //Log.i("Informacja:","Wciśnięto przycisk plus/minus");
-            floatScreenResult = (-1) * floatScreenResult;
-        }
-        else if(view.getId()==R.id.button_0){
-            Log.i("Wciśnięto przycisk:","przucisk 0.");
-            floatScreenResult = (float) 0;
-            status=false;
-        }
-        else if(view.getId()==R.id.button_1){
-            //Log.i("Wciśnięto przycisk:","przucisk 1.");
-            floatScreenResult = (float) 1;
-            status=false;
-        }
-        else if(view.getId()==R.id.button_2){
-            floatScreenResult = (float) 2;
-            status=false;
-        }
-        else if(view.getId()==R.id.button_3){
-            floatScreenResult = (float) 3;
-            status=false;
-        }
-        else if(view.getId()==R.id.button_4){
-            floatScreenResult = (float) 4;
-        }
-        else if(view.getId()==R.id.button_5){
-            floatScreenResult = (float) 5;
-            status=false;
-        }
-        else if(view.getId()==R.id.button_6){
-            floatScreenResult = (float) 6;
-            status=false;
-        }
-        else if(view.getId()==R.id.button_7){
-            floatScreenResult = (float) 7;
-            status=false;
-        }
-        else if(view.getId()==R.id.button_8){
-            floatScreenResult = (float) 8;
-            status=false;
-        }
-        else if(view.getId()==R.id.button_9){
-            floatScreenResult = (float) 9;
-            status=false;
-        }
-        else if(view.getId()==R.id.button_toAdd){
-            screenBufor += "+";
-            status= true;
-        }
-        else if(view.getId()==R.id.button_toDivide){
-            screenBufor += "/";
-            status= true;
-        }
-        else if(view.getId()==R.id.button_multiply){
-            screenBufor += "*";
-            status= true;
-        }
-        else if(view.getId()==R.id.button_toSubstract){
-            screenBufor += "-";
-            status= true;
-        }
-        else if(view.getId()==R.id.button_result){
-            screenBufor += "=";
-            status= true;
-        }
-        else if(view.getId()==R.id.button_C){
-            //Log.i("Wciśnięto przycisk:","przucisk C.");
-            floatScreenResult = (float) 0;
-            screenBufor = "";
-            status= true;
-        }*/
 
 
     }
