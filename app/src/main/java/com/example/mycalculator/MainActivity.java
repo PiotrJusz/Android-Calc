@@ -57,6 +57,22 @@ public class MainActivity extends AppCompatActivity {
             return result.substring(0,result.length()-1);
         }
     }
+    private String convertPercent(String strValue, String strLastValue, String op){
+        if(strValue.equals(""))
+            strValue="0";
+        if(strLastValue.equals(""))
+            strLastValue="0";
+        if(op.equals("*")||op.equals("/")){
+            strValue = String.valueOf( Double.valueOf(strValue) / 100 );
+        }
+        else{
+            strValue = String.valueOf( Double.valueOf(strLastValue)*Double.valueOf(strValue)/100);
+        }
+        Log.i("strValue po konwersji:",strValue);
+        return strValue;
+
+    }
+
     private String getResult(String first,String op, String second){
         String tempInfo =  first + " " + op + " " + second;
         Log.i("getResult(): ",tempInfo);
@@ -82,6 +98,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case "/":
+                if (!(first ==(""))){
+                    result =  String.valueOf( (Double.parseDouble(first) / Double.parseDouble(second)) );
+                }
+                break;
+            case "%":
                 if (!(first ==(""))){
                     result =  String.valueOf( (Double.parseDouble(first) / Double.parseDouble(second)) );
                 }
@@ -231,6 +252,15 @@ public class MainActivity extends AppCompatActivity {
             if(currentOperation.equals("+")){
                 screenResult = getResult(screenBufor,"+",screenResult);
             }
+            else if (currentOperation.equals("-")) {
+                screenResult = getResult(screenBufor,"-",screenResult);
+            }
+            else if(currentOperation.equals("*")){
+                screenResult = getResult(screenBufor,"*",screenResult);
+            }
+            else if(currentOperation.equals("/")){
+                screenResult = getResult(screenBufor,"/",screenResult);
+            }
             currentOperation = "+";
 
             screenBufor=screenResult;
@@ -245,10 +275,67 @@ public class MainActivity extends AppCompatActivity {
             else if (currentOperation.equals("-")) {
                 screenResult = getResult(screenBufor,"-",screenResult);
             }
+            else if(currentOperation.equals("*")){
+                screenResult = getResult(screenBufor,"*",screenResult);
+            }
+            else if(currentOperation.equals("/")){
+                screenResult = getResult(screenBufor,"/",screenResult);
+            }
             currentOperation = "-";
 
             screenBufor=screenResult;
             Log.i("screenBuffor_1: ",screenBufor );
+        }
+        else if(view.getId()==R.id.button_multiply){
+            status = true;
+            Log.i("currentOperation:",currentOperation);
+            if(currentOperation.equals("+")){
+                screenResult = getResult(screenBufor,"+",screenResult);
+            }
+            else if (currentOperation.equals("-")) {
+                screenResult = getResult(screenBufor,"-",screenResult);
+            }
+            else if(currentOperation.equals("*")){
+                screenResult = getResult(screenBufor,"*",screenResult);
+            }
+            else if(currentOperation.equals("/")){
+                screenResult = getResult(screenBufor,"/",screenResult);
+            }
+            currentOperation = "*";
+
+            screenBufor=screenResult;
+            Log.i("screenBuffor_1: ",screenBufor );
+        }
+        else if(view.getId()==R.id.button_toDivide){
+            status = true;
+            Log.i("currentOperation:",currentOperation);
+            if(currentOperation.equals("+")){
+                screenResult = getResult(screenBufor,"+",screenResult);
+            }
+            else if (currentOperation.equals("-")) {
+                screenResult = getResult(screenBufor,"-",screenResult);
+            }
+            else if(currentOperation.equals("*")){
+                screenResult = getResult(screenBufor,"*",screenResult);
+            }
+            else if(currentOperation.equals("/")){
+                screenResult = getResult(screenBufor,"/",screenResult);
+            }
+            currentOperation = "/";
+
+            screenBufor=screenResult;
+            Log.i("screenBuffor_1: ",screenBufor );
+        }
+        else if(view.getId()==R.id.button_procent){
+            Log.i("Wcisnieto %:","Konwersja liczby na proceny=t...");
+            if(currentOperation.equals("")){
+                editTextNumberDecimal.setText("0");
+            }
+            else {
+                //screenResult = convertPercent(screenResult, screenBufor, currentOperation);
+                //editTextNumberDecimal.setText(convertPercent(screenResult, screenBufor, currentOperation));
+                screenResult = convertPercent(screenResult, screenBufor, currentOperation);
+            }
         }
 
 
