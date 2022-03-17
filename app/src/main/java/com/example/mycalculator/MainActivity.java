@@ -293,6 +293,7 @@ public class MainActivity extends AppCompatActivity {
             //zerowanie currentOperation i przypisanie wyniku do zmiennej screenBufor - przygotowanie do następnej operacji
             screenBufor=screenResult;
             currentOperation="";
+            status=true;    //ustawianie statusu true - umożliwienie resetowanie screenbuffor i wpisanie nowej cyfry zaar po wcisnięciu przycisku "="
         }
         else if(view.getId()==R.id.button_toAdd){
             status = true;
