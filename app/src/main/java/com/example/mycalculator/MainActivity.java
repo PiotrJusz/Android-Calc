@@ -107,6 +107,18 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
+        result = setProperlyResult(result); //ustawianie wartości bez potrzebnych zer
+        return result;
+    }
+
+    private String setProperlyResult(String result) {
+        int l = result.length();
+        if(result.charAt(l - 1) == '0' && l>=3 ){
+            Log.i("SetProperlyResult:","Wykryto niepotrzebne zero!");
+            if(result.charAt(l-2)=='.'){
+                result=result.substring(0,l-2);
+            }
+        }
         return result;
     }
     /*
@@ -374,11 +386,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        Log.i("screenresult przed konwersją na Integer:", screenResult);
+        //Log.i("screenresult przed konwersją na Integer:", screenResult);
         /*if(!screenResult.equals("")) {
             screenResult = setProperlyResult(screenResult);
         }*/
-        Log.i("screenresult po konwersji na Integer:", screenResult);
+        //Log.i("screenresult po konwersji na Integer:", screenResult);
         if(!status) {    //wciśnięcie przycisku z cyfrą
             editTextNumberDecimal.setText(screenResult);
             if (status) {    //wcisnięcie klawisza operacji + - * /
