@@ -3,10 +3,8 @@ package com.example.mycalculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
@@ -79,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         //op - currentOperation
         String result="";
         switch(op){
-            case "None":
+            case "":
                 //nic sie na razie nie dzieje
                 result = String.valueOf( 0 + Double.parseDouble(second));
             case "+":
@@ -111,6 +109,44 @@ public class MainActivity extends AppCompatActivity {
         }
         return result;
     }
+    /*
+    private String[] getNewString(String oldStr,int end){
+        String[] newStr = new String[0];
+        for(int i=0; i == end-1; i++){
+            newStr[i] = oldStr.substring(i,i+1);
+        }
+        return newStr;
+    }
+    private String converseString(String[] old){
+        StringBuilder newStr = null;
+        for(int i=0;i<old.length;i++){
+            newStr.append(old[i]);
+        }
+        return String.valueOf(newStr);
+    }
+
+    private String setProperlyResult(String value){
+        String[] newResult=getNewString(value,value.length());
+        boolean condition = true;
+        int l = value.length();
+        int i=0;
+
+        do{
+            if(newResult[l-1].equals("0")){
+                newResult = getNewString(value,newResult.length-1);
+            }
+            else if((newResult[l-1].equals("."))){
+                newResult = getNewString(value,newResult.length-1);
+                condition = false;
+            }
+            else{
+                newResult = getNewString(value, value.length()-1);
+                condition = false;
+            }
+        }
+        while(condition);
+        return converseString(newResult);
+    }*/
 
     public void clickButton(View view){
         //Log.i("Zdarzenie:","Wciśnięto przycisk!");
@@ -338,7 +374,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-
+        Log.i("screenresult przed konwersją na Integer:", screenResult);
+        /*if(!screenResult.equals("")) {
+            screenResult = setProperlyResult(screenResult);
+        }*/
+        Log.i("screenresult po konwersji na Integer:", screenResult);
         if(!status) {    //wciśnięcie przycisku z cyfrą
             editTextNumberDecimal.setText(screenResult);
             if (status) {    //wcisnięcie klawisza operacji + - * /
