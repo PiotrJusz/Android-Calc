@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
     }
-    //Button button_plus_minus = (Button)findViewById(R.id.button_plus_minus);
+
     private String Multiply(String result, int k){
         double dResult=Double.valueOf(result);
         return String.valueOf(dResult * k);
@@ -33,8 +33,7 @@ public class MainActivity extends AppCompatActivity {
         else{
             newScreenResult = result+String.valueOf(k);
         }
-        //Double fResult = Double.parseDouble(result);
-        //newScreenResult = String.valueOf(fResult * 10 + k);
+
         return newScreenResult;
     }
     public String addNumber(String symbol, String result){  //wciśniecie przycisku "'" - point decimal
@@ -66,20 +65,20 @@ public class MainActivity extends AppCompatActivity {
         else{
             strValue = String.valueOf( Double.valueOf(strLastValue)*Double.valueOf(strValue)/100);
         }
-        Log.i("strValue po konwersji:",strValue);
+
         return strValue;
 
     }
 
     private String getResult(String first,String op, String second){
         String tempInfo =  first + " " + op + " " + second;
-        Log.i("getResult(): ",tempInfo);
         //op - currentOperation
         String result="";
         switch(op){
             case "":
                 //nic sie na razie nie dzieje
-                result = String.valueOf( 0 + Double.parseDouble(second));
+                //result = String.valueOf( 0 + Double.parseDouble(second));
+                //result=String.valueOf(editTextNumberDecimal.getText());
             case "+":
                 if (!(first ==(""))){
                     result =  String.valueOf( (Double.parseDouble(first) + Double.parseDouble(second)) );
@@ -107,62 +106,29 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
+        if(result.equals("")){
+            EditText editTextNumberDecimal = (EditText) findViewById(R.id.editTextNumberDecimal);
+
+            result = String.valueOf(editTextNumberDecimal.getText());
+        }
         result = setProperlyResult(result); //ustawianie wartości bez potrzebnych zer
         return result;
     }
 
     private String setProperlyResult(String result) {
+        //ucinanie niepotrzebnego zera
         int l = result.length();
-        if(result.charAt(l - 1) == '0' && l>=3 ){
-            Log.i("SetProperlyResult:","Wykryto niepotrzebne zero!");
-            if(result.charAt(l-2)=='.'){
-                result=result.substring(0,l-2);
+        if(l>=3) {
+            if (result.charAt(l - 1) == '0') {
+                if (result.charAt(l - 2) == '.') {
+                    result = result.substring(0, l - 2);
+                }
             }
         }
         return result;
     }
-    /*
-    private String[] getNewString(String oldStr,int end){
-        String[] newStr = new String[0];
-        for(int i=0; i == end-1; i++){
-            newStr[i] = oldStr.substring(i,i+1);
-        }
-        return newStr;
-    }
-    private String converseString(String[] old){
-        StringBuilder newStr = null;
-        for(int i=0;i<old.length;i++){
-            newStr.append(old[i]);
-        }
-        return String.valueOf(newStr);
-    }
-
-    private String setProperlyResult(String value){
-        String[] newResult=getNewString(value,value.length());
-        boolean condition = true;
-        int l = value.length();
-        int i=0;
-
-        do{
-            if(newResult[l-1].equals("0")){
-                newResult = getNewString(value,newResult.length-1);
-            }
-            else if((newResult[l-1].equals("."))){
-                newResult = getNewString(value,newResult.length-1);
-                condition = false;
-            }
-            else{
-                newResult = getNewString(value, value.length()-1);
-                condition = false;
-            }
-        }
-        while(condition);
-        return converseString(newResult);
-    }*/
 
     public void clickButton(View view){
-        //Log.i("Zdarzenie:","Wciśnięto przycisk!");
-        //Log.i("Button", String.valueOf(view.getId()));
 
         EditText editTextNumberDecimal = (EditText) findViewById(R.id.editTextNumberDecimal);
 
@@ -284,11 +250,10 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(view.getId()==R.id.button_plus_minus){
             status=false;
-            screenResult=Multiply(screenResult,-1);
+            screenResult=setProperlyResult(Multiply(screenResult,-1));
         }
         else if(view.getId()==R.id.button_result){
             //status=true;
-            //tu powinna byc funkcja getResult
             screenResult = getResult(screenBufor,currentOperation,screenResult);
             //zerowanie currentOperation i przypisanie wyniku do zmiennej screenBufor - przygotowanie do następnej operacji
             screenBufor=screenResult;
@@ -297,7 +262,6 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(view.getId()==R.id.button_toAdd){
             status = true;
-            Log.i("currentOperation:",currentOperation);
             if(currentOperation.equals("+")){
                 screenResult = getResult(screenBufor,"+",screenResult);
             }
@@ -313,11 +277,9 @@ public class MainActivity extends AppCompatActivity {
             currentOperation = "+";
 
             screenBufor=screenResult;
-            Log.i("screenBuffor_1: ",screenBufor );
         }
         else if(view.getId()==R.id.button_toSubstract){
             status = true;
-            Log.i("currentOperation:",currentOperation);
             if(currentOperation.equals("+")){
                 screenResult = getResult(screenBufor,"+",screenResult);
             }
@@ -333,11 +295,9 @@ public class MainActivity extends AppCompatActivity {
             currentOperation = "-";
 
             screenBufor=screenResult;
-            Log.i("screenBuffor_1: ",screenBufor );
         }
         else if(view.getId()==R.id.button_multiply){
             status = true;
-            Log.i("currentOperation:",currentOperation);
             if(currentOperation.equals("+")){
                 screenResult = getResult(screenBufor,"+",screenResult);
             }
@@ -353,11 +313,9 @@ public class MainActivity extends AppCompatActivity {
             currentOperation = "*";
 
             screenBufor=screenResult;
-            Log.i("screenBuffor_1: ",screenBufor );
         }
         else if(view.getId()==R.id.button_toDivide){
             status = true;
-            Log.i("currentOperation:",currentOperation);
             if(currentOperation.equals("+")){
                 screenResult = getResult(screenBufor,"+",screenResult);
             }
@@ -373,25 +331,17 @@ public class MainActivity extends AppCompatActivity {
             currentOperation = "/";
 
             screenBufor=screenResult;
-            Log.i("screenBuffor_1: ",screenBufor );
         }
         else if(view.getId()==R.id.button_procent){
-            Log.i("Wcisnieto %:","Konwersja liczby na proceny=t...");
             if(currentOperation.equals("")){
                 editTextNumberDecimal.setText("0");
             }
             else {
-                //screenResult = convertPercent(screenResult, screenBufor, currentOperation);
-                //editTextNumberDecimal.setText(convertPercent(screenResult, screenBufor, currentOperation));
+                //konwersja liczby na procenty: funkcja convertPercent
                 screenResult = convertPercent(screenResult, screenBufor, currentOperation);
             }
         }
 
-        //Log.i("screenresult przed konwersją na Integer:", screenResult);
-        /*if(!screenResult.equals("")) {
-            screenResult = setProperlyResult(screenResult);
-        }*/
-        //Log.i("screenresult po konwersji na Integer:", screenResult);
         if(!status) {    //wciśnięcie przycisku z cyfrą
             editTextNumberDecimal.setText(screenResult);
             if (status) {    //wcisnięcie klawisza operacji + - * /
@@ -401,12 +351,5 @@ public class MainActivity extends AppCompatActivity {
         else{
             editTextNumberDecimal.setText(screenResult);
         }
-
-
-
-
-
     }
-
-
 }
