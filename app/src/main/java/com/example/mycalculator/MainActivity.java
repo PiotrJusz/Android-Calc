@@ -55,14 +55,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private String convertPercent(String strValue, String strLastValue, String op){
-        if(strValue.equals(""))
-            strValue="0";
-        if(strLastValue.equals(""))
-            strLastValue="0";
+        //if(strValue.equals(""))
+            //strValue="0";
+        //if(strLastValue.equals(""))
+            //strLastValue="0";
         if(op.equals("*")||op.equals("/")){
+            if(strValue.equals(""))
+                strValue="0";
             strValue = String.valueOf( Double.valueOf(strValue) / 100 );
         }
-        else{
+        else if(op.equals("")||strLastValue.equals("")){ //zachodzi w przypadku wpisania procentu jako pierwszy argument w dzialaniu
+            Log.i("convertPercent","op is empty and strLastValue...");
+            strValue = String.valueOf( Double.valueOf(strValue) / 100 );
+        }
+        else{   //zachodzi dla op gdy jest+ albo -
+            if(strValue.equals(""))
+                strValue="0";
+            if(strLastValue.equals(""))
+                strLastValue="0";
             strValue = String.valueOf( Double.valueOf(strLastValue)*Double.valueOf(strValue)/100);
         }
 
@@ -237,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
             status=false;
             screenResult = addNumber(0,"");
             //zerowanie currentOperation i screenBufor - przygotowanie do następneh operacji
-            currentOperation="None";
+            currentOperation="";
             screenBufor="";
         }
         else if(view.getId()==R.id.button_decimal_point){
@@ -334,11 +344,14 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(view.getId()==R.id.button_procent){
             if(currentOperation.equals("")){
-                editTextNumberDecimal.setText("0");
+                //editTextNumberDecimal.setText("0");
             }
             else {
                 //konwersja liczby na procenty: funkcja convertPercent
                 screenResult = convertPercent(screenResult, screenBufor, currentOperation);
+                if(status==true) {
+                    screenBufor = screenResult;
+                }
             }
         }
 
