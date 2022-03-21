@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     String screenBufor = "";
     String currentResult;
     String currentOperation="";
+    String lastOperation="";
     boolean status = false; //true dla operacji, false dla liczby
 
     @Override
@@ -138,7 +139,15 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
+    private void printStatus(){
+        Log.i("Status of lastoperation)",lastOperation);
+        Log.i("Status of status:",String.valueOf(status));
+    }
+
     public void clickButton(View view){
+
+        Log.i("Status po sciśnięciu przycisku:","______________");
+        printStatus();
 
         EditText editTextNumberDecimal = (EditText) findViewById(R.id.editTextNumberDecimal);
 
@@ -272,76 +281,79 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(view.getId()==R.id.button_toAdd){
             status = true;
-            if(currentOperation.equals("+")){
-                screenResult = getResult(screenBufor,"+",screenResult);
-            }
-            else if (currentOperation.equals("-")) {
-                screenResult = getResult(screenBufor,"-",screenResult);
-            }
-            else if(currentOperation.equals("*")){
-                screenResult = getResult(screenBufor,"*",screenResult);
-            }
-            else if(currentOperation.equals("/")){
-                screenResult = getResult(screenBufor,"/",screenResult);
+            if (lastOperation.equals("")) {
+                if (currentOperation.equals("+")) {
+                    screenResult = getResult(screenBufor, "+", screenResult);
+                } else if (currentOperation.equals("-")) {
+                    screenResult = getResult(screenBufor, "-", screenResult);
+                } else if (currentOperation.equals("*")) {
+                    screenResult = getResult(screenBufor, "*", screenResult);
+                } else if (currentOperation.equals("/")) {
+                    screenResult = getResult(screenBufor, "/", screenResult);
+                }
+
+                screenBufor = screenResult;
             }
             currentOperation = "+";
-
-            screenBufor=screenResult;
         }
         else if(view.getId()==R.id.button_toSubstract){
             status = true;
-            if(currentOperation.equals("+")){
-                screenResult = getResult(screenBufor,"+",screenResult);
-            }
-            else if (currentOperation.equals("-")) {
-                screenResult = getResult(screenBufor,"-",screenResult);
-            }
-            else if(currentOperation.equals("*")){
-                screenResult = getResult(screenBufor,"*",screenResult);
-            }
-            else if(currentOperation.equals("/")){
-                screenResult = getResult(screenBufor,"/",screenResult);
+            if (lastOperation.equals("")) {
+                if (currentOperation.equals("+")) {
+                    screenResult = getResult(screenBufor, "+", screenResult);
+                } else if (currentOperation.equals("-")) {
+                    screenResult = getResult(screenBufor, "-", screenResult);
+                } else if (currentOperation.equals("*")) {
+                    screenResult = getResult(screenBufor, "*", screenResult);
+                } else if (currentOperation.equals("/")) {
+                    screenResult = getResult(screenBufor, "/", screenResult);
+                }
+                screenBufor=screenResult;
             }
             currentOperation = "-";
 
-            screenBufor=screenResult;
+
         }
         else if(view.getId()==R.id.button_multiply){
             status = true;
-            if(currentOperation.equals("+")){
-                screenResult = getResult(screenBufor,"+",screenResult);
-            }
-            else if (currentOperation.equals("-")) {
-                screenResult = getResult(screenBufor,"-",screenResult);
-            }
-            else if(currentOperation.equals("*")){
-                screenResult = getResult(screenBufor,"*",screenResult);
-            }
-            else if(currentOperation.equals("/")){
-                screenResult = getResult(screenBufor,"/",screenResult);
+            if (lastOperation.equals("")) {
+                if(currentOperation.equals("+")){
+                    screenResult = getResult(screenBufor,"+",screenResult);
+                }
+                else if (currentOperation.equals("-")) {
+                    screenResult = getResult(screenBufor,"-",screenResult);
+                }
+                else if(currentOperation.equals("*")){
+                    screenResult = getResult(screenBufor,"*",screenResult);
+                }
+                else if(currentOperation.equals("/")){
+                    screenResult = getResult(screenBufor,"/",screenResult);
+                }
+                screenBufor=screenResult;
             }
             currentOperation = "*";
 
-            screenBufor=screenResult;
+
         }
-        else if(view.getId()==R.id.button_toDivide){
+        else if(view.getId()==R.id.button_toDivide) {
             status = true;
-            if(currentOperation.equals("+")){
-                screenResult = getResult(screenBufor,"+",screenResult);
-            }
-            else if (currentOperation.equals("-")) {
-                screenResult = getResult(screenBufor,"-",screenResult);
-            }
-            else if(currentOperation.equals("*")){
-                screenResult = getResult(screenBufor,"*",screenResult);
-            }
-            else if(currentOperation.equals("/")){
-                screenResult = getResult(screenBufor,"/",screenResult);
+            if (lastOperation.equals("")) {
+                if (currentOperation.equals("+")) {
+                    screenResult = getResult(screenBufor, "+", screenResult);
+                } else if (currentOperation.equals("-")) {
+                    screenResult = getResult(screenBufor, "-", screenResult);
+                } else if (currentOperation.equals("*")) {
+                    screenResult = getResult(screenBufor, "*", screenResult);
+                } else if (currentOperation.equals("/")) {
+                    screenResult = getResult(screenBufor, "/", screenResult);
+                }
+                screenBufor=screenResult;
             }
             currentOperation = "/";
 
-            screenBufor=screenResult;
+
         }
+
         else if(view.getId()==R.id.button_procent){
             if(currentOperation.equals("")){
                 //editTextNumberDecimal.setText("0");
@@ -355,14 +367,20 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+
         if(!status) {    //wciśnięcie przycisku z cyfrą
+            lastOperation="";
             editTextNumberDecimal.setText(screenResult);
-            if (status) {    //wcisnięcie klawisza operacji + - * /
+        if(status) {    //wcisnięcie klawisza operacji + - * /
                 screenBufor = screenResult;   //zerowanie lwartości - przygotowanie do następnej operacji
             }
         }
         else{
             editTextNumberDecimal.setText(screenResult);
+            lastOperation=currentOperation;
         }
+
+        Log.i("Ststus po wykonaniu operacji:","______________");
+        printStatus();
     }
 }
