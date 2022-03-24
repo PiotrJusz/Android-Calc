@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="320dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="105dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:singleLine="false"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textSize="24sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/button_multiply"
+        app:layout_constraintStart_toEndOf="@+id/button_toDivide"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_plus_minus"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="2dp"
+        android:onClick="clickButton"
+        android:text="+ / -"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_0"
+        app:layout_constraintEnd_toStartOf="@+id/button_0"
+        app:layout_constraintStart_toStartOf="@+id/button_2" />
+
+    <Button
+        android:id="@+id/button_0"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:onClick="clickButton"
+        android:text="0"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_1"
+        app:layout_constraintStart_toEndOf="@+id/button_plus_minus" />
+
+    <Button
+        android:id="@+id/button_decimal_point"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:onClick="clickButton"
+        android:text="."
+        app:layout_constraintEnd_toEndOf="@+id/editTextNumberDecimal"
+        app:layout_constraintStart_toEndOf="@+id/button_1"
+        app:layout_constraintTop_toBottomOf="@+id/button_5" />
+
+    <Button
+        android:id="@+id/button_result"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="clickButton"
+        android:text="="
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_decimal_point"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_1"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:onClick="clickButton"
+        android:text="1"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_decimal_point"
+        app:layout_constraintStart_toEndOf="@+id/button_0" />
+
+    <Button
+        android:id="@+id/button_2"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="2dp"
+        android:onClick="clickButton"
+        android:text="2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_3"
+        app:layout_constraintEnd_toStartOf="@+id/button_3"
+        app:layout_constraintStart_toStartOf="@+id/button_6" />
+
+    <Button
+        android:id="@+id/button_3"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:onClick="clickButton"
+        android:text="3"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_4"
+        app:layout_constraintStart_toEndOf="@+id/button_2" />
+
+    <Button
+        android:id="@+id/button_toAdd"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="clickButton"
+        android:text="+"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_5"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_4"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:onClick="clickButton"
+        android:text="4"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_5"
+        app:layout_constraintStart_toEndOf="@+id/button_3" />
+
+    <Button
+        android:id="@+id/button_5"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:onClick="clickButton"
+        android:text="5"
+        app:layout_constraintEnd_toEndOf="@+id/editTextNumberDecimal"
+        app:layout_constraintStart_toEndOf="@+id/button_4"
+        app:layout_constraintTop_toBottomOf="@+id/button_9" />
+
+    <Button
+        android:id="@+id/button_6"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="2dp"
+        android:onClick="clickButton"
+        android:text="6"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_7"
+        app:layout_constraintEnd_toStartOf="@+id/button_7"
+        app:layout_constraintStart_toStartOf="@+id/editTextNumberDecimal" />
+
+    <Button
+        android:id="@+id/button_toSubstract"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="clickButton"
+        android:text="-"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_9"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_7"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:onClick="clickButton"
+        android:text="7"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_8"
+        app:layout_constraintStart_toEndOf="@+id/button_6" />
+
+    <Button
+        android:id="@+id/button_8"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:onClick="clickButton"
+        android:text="8"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_9"
+        app:layout_constraintStart_toEndOf="@+id/button_7" />
+
+    <Button
+        android:id="@+id/button_9"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:onClick="clickButton"
+        android:text="9"
+        app:layout_constraintEnd_toEndOf="@+id/editTextNumberDecimal"
+        app:layout_constraintStart_toEndOf="@+id/button_8"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal" />
+
+    <Button
+        android:id="@+id/button_multiply"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="clickButton"
+        android:text="*"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextNumberDecimal"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_C"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:onClick="clickButton"
+        android:text="C"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_plus_minus"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_del"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:onClick="clickButton"
+        android:text="del"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_procent"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:onClick="clickButton"
+        android:text="%"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_6"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_toDivide"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:onClick="clickButton"
+        android:text="/"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editTextNumberDecimal"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

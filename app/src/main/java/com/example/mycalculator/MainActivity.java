@@ -350,8 +350,6 @@ public class MainActivity extends AppCompatActivity {
                 screenBufor=screenResult;
             }
             currentOperation = "/";
-
-
         }
 
         else if(view.getId()==R.id.button_procent){
