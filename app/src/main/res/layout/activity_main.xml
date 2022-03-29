@@ -22,8 +22,7 @@
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/button_mr"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_plus_minus"
@@ -288,5 +287,18 @@
         android:text="M-"
         app:layout_constraintBottom_toTopOf="@+id/button_toDivide"
         app:layout_constraintStart_toEndOf="@+id/button_m_plus" />
+
+    <TextView
+        android:id="@+id/textViewMemory"
+        android:layout_width="391dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

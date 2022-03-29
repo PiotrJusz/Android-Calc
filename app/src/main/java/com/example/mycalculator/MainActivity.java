@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     String screenBufor = "";
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     String lastOperation = "";
     boolean status = false; //true dla operacji, false dla liczby
     String memory = "0";
+    //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
         printStatus();
 
         EditText editTextNumberDecimal = (EditText) findViewById(R.id.editTextNumberDecimal);
+        TextView textViewMemory = (TextView) findViewById(R.id.textViewMemory);
 
         String screenResult = String.valueOf(editTextNumberDecimal.getText());
         if (view.getId() == R.id.button_0) {
@@ -348,7 +351,12 @@ public class MainActivity extends AppCompatActivity {
             if(!memory.equals("0"))
                 screenResult = setProperlyResult(memory);
         }
-
+        if (!memory.equals("0")){
+            textViewMemory.setText("memory = "+memory);
+        }
+        else{
+            textViewMemory.setText("");
+        }
 
         if (!status) {    //wciśnięcie przycisku z cyfrą
             lastOperation = "";
