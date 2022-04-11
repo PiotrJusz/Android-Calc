@@ -2,8 +2,11 @@ package com.example.mycalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Point;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,18 +18,36 @@ public class MainActivity extends AppCompatActivity {
     String lastOperation = "";
     boolean status = false; //true dla operacji, false dla liczby
     String memory = "0";
+    //TextView textViewMemory = (TextView) findViewById(R.id.textViewMemory);
+
+    public MainActivity() {
+
+    }
     //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getResolutions();
 
     }
 
     private String Multiply(String result, int k) {
         double dResult = Double.valueOf(result);
         return String.valueOf(dResult * k);
+    }
+    private int[] getResolutions(){
+        int resolutions[] = new int[2];
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+        resolutions[0]=height;
+        resolutions[1]=width;
+        Log.i("Resolutions_height", String.valueOf(height));
+        Log.i("Resolutions_width:", String.valueOf(width));
+        return resolutions;
     }
 
     public String addNumber(int k, String result) {  //dopisanie cyfry na ostatnia pozycje
@@ -155,9 +176,11 @@ public class MainActivity extends AppCompatActivity {
         printStatus();
 
         EditText editTextNumberDecimal = (EditText) findViewById(R.id.editTextNumberDecimal);
-        TextView textViewMemory = (TextView) findViewById(R.id.textViewMemory);
+        //TextView textViewMemory = (TextView) findViewById(R.id.textViewMemory);
 
         String screenResult = String.valueOf(editTextNumberDecimal.getText());
+        TextView textViewMemory = (TextView) findViewById(R.id.textViewMemory);
+
         if (view.getId() == R.id.button_0) {
             if (!status) {
                 status = false;
