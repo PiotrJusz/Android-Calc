@@ -395,7 +395,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if (  !(memory.equals("0") || memory.equals("0.0"))  ){
-            textViewMemory.setText("   memory: "+setProperlyResult(memory));
+            textViewMemory.setText("   MR: "+setProperlyResult(memory));
         }
         else{
             textViewMemory.setText("");
