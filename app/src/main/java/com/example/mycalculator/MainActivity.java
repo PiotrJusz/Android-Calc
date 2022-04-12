@@ -18,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
     String lastOperation = "";
     boolean status = false; //true dla operacji, false dla liczby
     String memory = "0";
+    int height; //for resolution
+    int width;  //for resolution
+    int NUMBER_Of_BUTTONS_height = 8;
     //TextView textViewMemory = (TextView) findViewById(R.id.textViewMemory);
 
     public MainActivity() {
@@ -29,7 +32,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getResolutions();
+        //getResolutions();
+
+        //get Resolutions:
+        int resolutions[] = new int[2];
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        height = displayMetrics.heightPixels;
+        width = displayMetrics.widthPixels;
+        resolutions[0]=height;
+        resolutions[1]=width;
+        Log.i("Resolutions_height", String.valueOf(height));
+        Log.i("Resolutions_width:", String.valueOf(width));
 
     }
 
@@ -41,13 +55,16 @@ public class MainActivity extends AppCompatActivity {
         int resolutions[] = new int[2];
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
+        int height = displayMetrics.heightPixels-((NUMBER_Of_BUTTONS_height+1)*9);
         int width = displayMetrics.widthPixels;
         resolutions[0]=height;
         resolutions[1]=width;
         Log.i("Resolutions_height", String.valueOf(height));
         Log.i("Resolutions_width:", String.valueOf(width));
         return resolutions;
+    }
+    private int setHeight(){
+        return height/NUMBER_Of_BUTTONS_height;
     }
 
     public String addNumber(int k, String result) {  //dopisanie cyfry na ostatnia pozycje
@@ -176,10 +193,12 @@ public class MainActivity extends AppCompatActivity {
         printStatus();
 
         EditText editTextNumberDecimal = (EditText) findViewById(R.id.editTextNumberDecimal);
+        editTextNumberDecimal.setHeight(setHeight());
         //TextView textViewMemory = (TextView) findViewById(R.id.textViewMemory);
 
         String screenResult = String.valueOf(editTextNumberDecimal.getText());
         TextView textViewMemory = (TextView) findViewById(R.id.textViewMemory);
+        textViewMemory.setHeight(setHeight());
 
         if (view.getId() == R.id.button_0) {
             if (!status) {
@@ -371,11 +390,12 @@ public class MainActivity extends AppCompatActivity {
             memory = "0";
         }
         else if (view.getId() == R.id.button_mr){
-            if(!memory.equals("0"))
+            if(   !(memory.equals("0") || memory.equals("0.0"))  ) {
                 screenResult = setProperlyResult(memory);
+            }
         }
-        if (!memory.equals("0")){
-            textViewMemory.setText("memory = "+memory);
+        if (  !(memory.equals("0") || memory.equals("0.0"))  ){
+            textViewMemory.setText("   memory: "+setProperlyResult(memory));
         }
         else{
             textViewMemory.setText("");
